@@ -1,14 +1,16 @@
 Omrails::Application.routes.draw do
-  
+   root :to => 'pins#index'
   resources :pins
 
 
   devise_for :users
 
+  
+
   get 'about' => "pages#about"
 
 
-  root :to => 'pins#index'
+ 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
