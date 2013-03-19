@@ -5,7 +5,7 @@ class Pin < ActiveRecord::Base
   validates :description, presence: true 
   validates :user_id, presence: true
   validates_attachment :image, presence: true,
-  								content_type: {content_type: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'] },
+  								content_type: {content_type: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/pdf'] },
   								size: {less_than: 100.megabytes}
     
 

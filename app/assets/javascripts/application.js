@@ -15,3 +15,16 @@
 //= require jquery.masonry.min
 //= require bootstrap
 //= require_tree .
+
+
+
+/* slide pannel javascript*/
+
+$(document).ready(function(){
+
+  $(".trigger").click(function(){
+    $(".panel").toggle("fast");
+    $(this).toggleClass("active");
+    return false;
+  });
+});
