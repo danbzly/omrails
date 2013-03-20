@@ -5,7 +5,7 @@
    </p>
    <p>
    	<strong>
-   		Posted by: <%= pin.user.name %> (<%= pin.user.Biz_name %>)
+   		Posted by: <%= pin.user.try(:name) %> (<%= pin.user.try(:Biz_name) %>)
    	</strong>	
    </p>
 	
