@@ -26,16 +26,8 @@
          
           <ul class="nav pull-right">
             <% if user_signed_in? %>
-            <li><%= link_to "Add +", new_pin_path %></li>
-             
-             <div class="btn-group">
-                <a class="btn btn-inverse" href="#"><i class="icon-user icon-white"></i> User</a>
-                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-
-                <ul class="dropdown-menu">
-                  <li><a href="http://0.0.0.0:3000/users/edit"><i class="icon-pencil"></i> Edit</a></li>
-                 
-                  <li class="divider"></li>
+                  <li><%= link_to "Add +", new_pin_path %></li>
+                  <li><%= link_to "Edit", edit_user_registration_path %></li>
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
                   <% else %>
                       <li> <%= link_to "Registration", new_user_registration_path %></li>
@@ -43,7 +35,11 @@
                   <% end %>
                 
            </ul>
-		  </div>	    
+		      <!--<div class="btn-group">
+                <a class="btn btn-inverse" href="#"><i class="icon-user icon-white"></i> User</a>
+                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+
+                <ul class="dropdown-menu">-->
       <div class="nav-collapse collapse">
         <!-- .nav, .navbar-search, .navbar-form, etc -->
       </div>
