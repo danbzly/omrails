@@ -11,10 +11,11 @@
   <%= @status.content %>
 </p>
 
-
+<% if current_user == @status.user %>
 <%= link_to 'Edit', edit_status_path(@status) %> |
+<% end %> 
 <%= link_to 'Back', statuses_path %>
-<%%>
+
 
 </div>
 </div>
