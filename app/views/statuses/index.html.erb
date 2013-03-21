@@ -8,7 +8,7 @@
 
   <% @statuses.each do |status| %>
     <div class="status">
-      <strong><%= status.user.name %> (<%= status.user.Biz_name %>)</strong>
+      <strong><%= status.user.try(:name) %> (<%= status.user.try(:Biz_name) %>)</strong>
       <p><%= status.content %></p>
       <div class="meta">
         <%= link_to time_ago_in_words(status.created_at) + " ago", status %>
