@@ -1,5 +1,7 @@
 Omrails::Application.routes.draw do
   
+  get "profiles/show"
+
   resources :statuses
 
 

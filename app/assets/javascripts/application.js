@@ -28,3 +28,6 @@ $(document).ready(function(){
     return false;
   });
 });
+
+
+$('#myModal').modal('toggle')
