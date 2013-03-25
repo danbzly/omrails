@@ -5,9 +5,13 @@ gem 'rails', '3.2.12'
 gem 'jquery-rails'
 gem 'devise'
 gem 'simple_form'
-gem "paperclip", "~> 3.0"
+gem 'paperclip', "~> 3.0"
 gem 'aws-sdk'
-gem "twitter-bootstrap-rails", "~> 2.0rc0"
+gem 'twitter-bootstrap-rails', '~> 2.0rc0'
+gem 'friendly_id'
+
+
+
 group :production do
 	gem "pg"
 end

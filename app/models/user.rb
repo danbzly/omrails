@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
   
 
 
-  
 
 
 
