@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+
+ 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -15,7 +17,6 @@ class User < ActiveRecord::Base
                                       
 
 
-validates :user_id, presence: true
 
 
   # attr_accessible :title, :body
@@ -25,8 +26,9 @@ validates :user_id, presence: true
 
   has_many :pins
   has_many :statuses
-  has_one :profile
- 
+  
+
+
   
 
 
@@ -39,4 +41,4 @@ validates :user_id, presence: true
 
   "http://gravatar.com/avatar/#{hash}"
 end
-end
+ end

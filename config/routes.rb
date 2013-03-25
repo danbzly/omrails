@@ -20,7 +20,8 @@ Omrails::Application.routes.draw do
 
   root :to => 'pins#index'
   
-   get ':user_id', to: 'profiles#show', as: 'profile'
+   get '/:id', to: 'users#show', as: 'user'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
