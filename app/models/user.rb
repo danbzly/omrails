@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
                                       
 
 
-
+validates :user_id, presence: true
 
 
   # attr_accessible :title, :body
@@ -25,10 +25,11 @@ class User < ActiveRecord::Base
 
   has_many :pins
   has_many :statuses
+  has_one :profile
+ 
   
 
 
-  
 
 
   def gravatar_url
