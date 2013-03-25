@@ -11,6 +11,11 @@ gem 'twitter-bootstrap-rails', '~> 2.0rc0'
 
 
 
+group :test do
+ gem 'shoulda'	
+end
+
+
 
 group :production do
 	gem "pg"

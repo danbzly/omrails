@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
 
   has_many :pins
   has_many :statuses
-  
+  has_many :user_friendships
+  has_many :friends, through: :user_friendships
 
 
 
