@@ -4,6 +4,30 @@ Omrails::Application.routes.draw do
 
   get "profiles/show"
 
+
+as :user do
+    get '/register', to: 'devise/registrations#new', as: :register
+    get '/login', to: 'devise/sessions#new', as: :login
+    get '/logout', to: 'devise/sessions#destroy', as: :logout
+  end
+
+  devise_for :users, skip: [:sessions]
+
+  as :user do
+    get "/login" => 'devise/sessions#new', as: :new_user_session
+    post "/login" => 'devise/sessions#create', as: :user_session
+    delete "/logout" => 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
+  resources :user_friendships do
+    member do
+      put :accept
+      put :block
+    end
+  end
+
+
+
   resources :statuses
 
 
@@ -14,13 +38,15 @@ Omrails::Application.routes.draw do
 
  resources :users
 
+ resources :user_friendships
+
 
   get 'about' => "pages#about"
 
 
   root :to => 'pins#index'
   
-   get '/:id', to: 'users#show', as: 'user'
+   get '/:id', to: 'users#show', as: :user
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

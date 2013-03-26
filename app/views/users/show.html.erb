@@ -1,23 +1,31 @@
 
-
 <div class="page-header">
+ <div class="well">
+	<h1><%= @user.Biz_name %> <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user), class: 'btn'%></h1>
+   <% if current_user == @user %>
+  <%= link_to "Edit Profile", edit_user_registration_path %>
+  <a href="#myModal" role="button" class="btn" data-toggle="modal">Add Pin</a>
+  <% end %>
+</div>
+ 
 
-	<h1><%= @user.Biz_name %></h1>
-	
-</div>	
+
+
+
+
 <% if @statuses %>
   <% @statuses.each do |status| %>
    
-    
-      
      
   
     <div class="well">
     	<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
       <%= status.content %>
+      
       <hr />
       <%= link_to time_ago_in_words(status.created_at), status_path(status) %> ago
     </div>
     
   <% end %>
 <% end %>
+

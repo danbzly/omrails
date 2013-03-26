@@ -5,13 +5,15 @@ class PinsController < ApplicationController
   # GET /pins.json
   def index
     @pins = Pin.order("created_at desc")
-
+    @pin = Pin.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @pins }
     end
   end
-
+def find
+  @pin = Pin.new
+end
   # GET /pins/1
   # GET /pins/1.json
   def show
@@ -26,6 +28,7 @@ class PinsController < ApplicationController
   # GET /pins/new
   # GET /pins/new.json
   def new
+    
     @pin = current_user.pins.new
 
     respond_to do |format|
