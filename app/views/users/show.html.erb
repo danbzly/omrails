@@ -10,7 +10,7 @@
 </h1>
    <% if current_user == @user %>
   <%= link_to "Edit Profile", edit_user_registration_path %><br>
-  <a href="#myModal" role="button" class="btn" data-toggle="modal">Add Pin</a>
+  <a href="#myModal1" role="button" class="btn" data-toggle="modal">Add Pin</a>
   <% end %>
 
 </div>
@@ -34,13 +34,14 @@
 
   <div class="">
     
-    <%= f.input :content %>
+    <%= f.text_area :content,  placeholder: "Hows business today?", label: "Stati Box", :cols => "200", :rows => "4" %>
+
   </div>
 
   <div class="">
-    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= f.button :submit, class: "btn-small btn-primary" %>
   </div>
-  
+
 
       
 <% end %><% end %> 
