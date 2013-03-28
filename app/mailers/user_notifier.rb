@@ -10,6 +10,7 @@ class UserNotifier < ActionMailer::Base
   	mail to: @friend.email
   	     subject: "#{@user.Biz_name} wants to be friends on Entrecommunity"
   	 end
+    end
 
 
   	 def friend_request_accept(user_friendship_id)
