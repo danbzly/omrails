@@ -22,3 +22,4 @@ class UserNotifier < ActionMailer::Base
   	     subject: "#{@friend.Biz_name} has accepted your friend request"
   	 end
 end
+end
