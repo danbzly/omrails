@@ -1,10 +1,36 @@
-<%= render 'pages/home'%>
+
+
+
+
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <div class="page-header">
+      	   <h3>Statuses</h3>
+ <% if @statuses %>
+<% @statuses.each do |status| %>
+    <div class="">
+      <%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
+      <%= status.content %>
+      <br>
+      <%= link_to time_ago_in_words(status.created_at), status_path(status) %> ago
+    </div>
+    <% end %>
+  <% end %>
+
+</div>
+</div>
+
+    <div class="span10">
+     <%= render 'pages/home'%>
 
  <div id="pins" >
 <% if @pins %> <%= render @pins %> <% end %>
  
   </div>
-
-
+    </div>
+  </div>
+</div>
 
 

@@ -1,3 +1,5 @@
+<% @status = Status.new if @status.nil? %>
+
 <%= simple_form_for(@status, html: {class: "form-horizontal"}) do |f| %>
   <%= f.error_notification %>
 

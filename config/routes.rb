@@ -2,7 +2,7 @@ Omrails::Application.routes.draw do
   
   get "users/show"
 
-  get "profiles/show"
+  
 
 
 as :user do
@@ -34,7 +34,7 @@ as :user do
   resources :pins
 
 
-  devise_for :users
+  devise_for :users, skip: [:sessions]
 
  resources :users
 
@@ -45,7 +45,6 @@ as :user do
 
 
   root :to => 'pins#index'
-  
    get '/:id', to: 'users#show', as: :user
 
   # The priority is based upon order of creation:

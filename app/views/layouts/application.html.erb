@@ -29,7 +29,7 @@
 
 
 <!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Create A new Pin</h3>
@@ -40,11 +40,29 @@
 
 
 
-<%= render :partial => 'pins/form.html'%>
+<%= render :partial => 'pins/form'%>
 
 
 
 
 </p>
+</div>
   
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel1">Create A new Status</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      
 
+
+
+<%= render :partial => 'statuses/form'%>
+
+
+
+
+</p></div>

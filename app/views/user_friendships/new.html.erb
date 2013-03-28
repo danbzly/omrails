@@ -1,13 +1,17 @@
-<% if @friend %>
-  <h1><%= @friend.Biz_name %></h1>
 
-  <p>Do you really want to friend <%= @friend.Biz_name %>?</p>
+<% if @friend.try do |friend| %>
 
-  <%= form_for @user_friendship, method: :post do |form| %>
+  <h1><%= @friend.try(:Biz_name) %></h1>
+
+  <p>Do you really want to friend <%= @friend.try(:Biz_name) %>?</p>
+
+  <%= form_for :user_friendship, :url => {:action => :create} do |f| %>
     <div class="form form-actions">
       <%= form.hidden_field :friend_id, value: @friend.id %>
       <%= submit_tag "Yes, Add Friend", class: 'btn btn-primary' %>
       <%= link_to "Cancel", user_path(@friend), class: 'btn' %>
     </div>
   <% end %>
-<% end %>
+  
+  <% end %><% end %>
+

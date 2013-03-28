@@ -6,14 +6,13 @@ before_filter :authenticate_user!
 
   def index
   	
-    @user_friendships = UserFriendshipDecorator.decorate_collection(friendship_association.all)
-    respond_with @user_friendships
+    @user_friendships = current_user.user_friendships.all
   end
 
   def accept
     @user_friendship = current_user.user_friendships.find(params[:id])
     if @user_friendship.accept!
-      flash[:success] = "You are now friends with #{@user_friendship.friend.first_name}"
+      flash[:success] = "You are now friends with #{@user_friendship.friend.Biz_name}"
     else
       flash[:error] = "That friendship could not be accepted."
     end
@@ -23,17 +22,26 @@ before_filter :authenticate_user!
   def block
     @user_friendship = current_user.user_friendships.find(params[:id])
     if @user_friendship.block!
-      flash[:success] = "You have blocked #{@user_friendship.friend.first_name}."
+      flash[:success] = "You have blocked #{@user_friendship.friend.Biz_name}."
     else
       flash[:error] = "That friendship could not be blocked."
     end
     redirect_to user_friendships_path
   end
 
+    def show
+      @user = User.find(params[:id])
+    @user_friendship = User_friendship.find(params[:friend_id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @status }
+    end
   def new
-    if params[:friend_id]
-      @friend = User.find(params[:friend_id])
-      raise ActiveRecord::RecordNotFound if @friend.nil?
+     
+    if params[:id]
+      @friend = current_user.find(params[:id])
+      
       @user_friendship = current_user.user_friendships.new(friend: @friend)
     else
       flash[:error] = "Friend required"
@@ -45,8 +53,8 @@ before_filter :authenticate_user!
   def create
     if params[:user_friendship] && params[:user_friendship].has_key?(:friend_id)
       @friend = User.where(id: params[:user_friendship][:friend_id]).first
-      @user_friendship = current_user.user_friendships.new(friend: @friend)
-      @user_friendship.save
+       @user_friendship = UserFriendship.request(current_user, @friend)
+    
         respond_to do |format|
         if @user_friendship.new_record?
           format.html do 
@@ -96,4 +104,5 @@ before_filter :authenticate_user!
       current_user.requested_user_friendships
     end
   end
+end
 end

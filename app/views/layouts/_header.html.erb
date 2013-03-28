@@ -31,9 +31,10 @@
                   
  
 
-                  <li><a data-target="#myModal" href="#" role="button" data-toggle="modal">Add Pin</a></li>
+                  <li><a data-target="#myModal1" href="#" role="button" data-toggle="modal">Add +</a></li>
+                  <!--<li><a data-target="#myModal" href="#" role="button" data-toggle="modal">Add S</a></li>-->
+                   <li> <%= link_to "friends", user_friendships_path %></li>
                    <li> <%= link_to "Statuses", statuses_path %></li>
-                  <li><%= link_to "Add +", new_pin_path %></li>
                   <li> <%= link_to "profile", user_path(current_user) %></li>
                   <li><%= link_to "Logout", logout_path, method: :delete %></li>
                   <% else %>

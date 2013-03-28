@@ -1,31 +1,78 @@
 
+
+<% if @statuses %>
+<% @statuses.find do |status| %>
+<div class="row">
+<div class="span12">
 <div class="page-header">
  <div class="well">
-	<h1><%= @user.Biz_name %> <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user), class: 'btn'%></h1>
+	<h1><%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %><%= @user.Biz_name %> <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user), class: 'btn'%>
+</h1>
    <% if current_user == @user %>
-  <%= link_to "Edit Profile", edit_user_registration_path %>
+  <%= link_to "Edit Profile", edit_user_registration_path %><br>
   <a href="#myModal" role="button" class="btn" data-toggle="modal">Add Pin</a>
   <% end %>
+
 </div>
  
 
+  <% end %>
+<% end %></div></div></div>
 
 
-
-
-<% if @statuses %>
-  <% @statuses.each do |status| %>
-   
-     
-  
-    <div class="well">
-    	<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
-      <%= status.content %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
       
-      <hr />
+      <!--Sidebar content-->
+      <% if current_user == @user %>
+      <h3>Post your Comment</h3>
+      <% @status = Status.new if @status.nil? %>
+
+<%= simple_form_for(@status, html: {class: ""}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="">
+    
+    <%= f.input :content %>
+  </div>
+
+  <div class="">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+  
+
+      
+<% end %><% end %> 
+<% if @statuses %>
+<% @statuses.find do |status| %>
+
+<h3>Add Friends Here</h3><br>
+<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
+<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
+<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
+<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
+<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
+<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
+
+
+   
+  </div><% end %>
+ 
+    <div class="span8">
+      <h3>Statuses</h3>
+ <% if @statuses %>
+<% @statuses.each do |status| %>
+    <div class="well">
+      <%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
+      <%= status.content %>
+      <br>
       <%= link_to time_ago_in_words(status.created_at), status_path(status) %> ago
     </div>
-    
+    <% end %>
   <% end %>
 <% end %>
-
+      <!--Body content-->
+    </div>
+  </div>
+</div>
