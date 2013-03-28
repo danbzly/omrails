@@ -7,7 +7,7 @@ class UserNotifier < ActionMailer::Base
   	@user = user_friendship.user
   	@friend = user_friendship.friend
 
-  	mail to: @friend.email
+  	mail to: @friend.email,
   	     subject: "#{@user.Biz_name} wants to be friends on Entrecommunity"
   	 end
 
@@ -19,7 +19,7 @@ class UserNotifier < ActionMailer::Base
   	@user = user_friendship.user
   	@friend = user_friendship.friend
 
-  	mail to: @user.email
+  	mail to: @user.email,
   	     subject: "#{@friend.Biz_name} has accepted your friend request"
   	 end
 end
