@@ -71,9 +71,9 @@ Omrails::Application.configure do
   config.paperclip_defaults = {
   :storage => :s3,
   :s3_credentials => {
-    :bucket => "entrecommunity",
-    :access_key_id => "AKIAJZNAZU5S4OVM4UOQ",
-    :secret_access_key => "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"
+    :bucket => "",
+    :access_key_id => "",
+    :secret_access_key => ""
   }
 }
 end
