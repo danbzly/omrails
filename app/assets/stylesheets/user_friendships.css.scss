@@ -1,3 +1,29 @@
 // Place all the styles related to the user_friendships controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.user_friendship {
+	border-bottom: solid 1px #ccc;
+	padding: 5px 0;
+}
+
+.user_friendship p {
+	margin: 4px 0;
+}
+
+
+.user_friendship.hover {
+	background: #FAFAFA;
+	
+}
+
+
+.user_friendship .admin {
+	
+	display: none;
+}
+
+.user_friendship.hover .admin {
+	display: inline;
+}

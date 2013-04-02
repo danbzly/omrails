@@ -1,18 +1,17 @@
-class UserFriendshipsController < ApplicationController
+class UserFriendshipsController < ApplicationController 
 
-
-before_filter :authenticate_user!
+  before_filter :authenticate_user!
   respond_to :html, :json
 
   def index
-  	
     @user_friendships = current_user.user_friendships.all
+    respond_with @user_friendships
   end
 
   def accept
     @user_friendship = current_user.user_friendships.find(params[:id])
     if @user_friendship.accept!
-      flash[:success] = "You are now friends with #{@user_friendship.friend.Biz_name}"
+      flash[:success] = "You are now friends with #{@user_friendship.friend.first_name}"
     else
       flash[:error] = "That friendship could not be accepted."
     end
@@ -22,26 +21,17 @@ before_filter :authenticate_user!
   def block
     @user_friendship = current_user.user_friendships.find(params[:id])
     if @user_friendship.block!
-      flash[:success] = "You have blocked #{@user_friendship.friend.Biz_name}."
+      flash[:success] = "You have blocked #{@user_friendship.friend.first_name}."
     else
       flash[:error] = "That friendship could not be blocked."
     end
     redirect_to user_friendships_path
   end
 
-    def show
-      @user = User.find(params[:id])
-    @user_friendship = User_friendship.find(params[:friend_id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @status }
-    end
   def new
-     
-    if params[:id]
-      @friend = current_user.find(params[:id])
-      
+    if params[:friend_id]
+      @friend = User.where(biz_name: params[:friend_id]).first
+      raise ActiveRecord::RecordNotFound if @friend.nil?
       @user_friendship = current_user.user_friendships.new(friend: @friend)
     else
       flash[:error] = "Friend required"
@@ -51,11 +41,11 @@ before_filter :authenticate_user!
   end
 
   def create
-    if params[:user_friendship] && params[:user_friendship].has_key?(:friend_id)
-      @friend = User.where(id: params[:user_friendship][:friend_id]).first
-       @user_friendship = UserFriendship.request(current_user, @friend)
-    
-        respond_to do |format|
+      if params[:user_friendship] && params[:user_friendship].has_key?(:friend_id)
+      @friend = User.where(biz_name: params[:user_friendship][:friend_id]).first
+      @user_friendship = UserFriendship.request(current_user, @friend)
+      flash[:success] = "You are now friends with #{@friend.try(:first_name)}"
+      respond_to do |format|
         if @user_friendship.new_record?
           format.html do 
             flash[:error] = "There was problem creating that friend request."
@@ -76,8 +66,10 @@ before_filter :authenticate_user!
     end
   end
 
+
+
   def edit
-    @friend = User.where(id: params[:id]).first
+    @friend = User.where(biz_name: params[:id]).first
     @user_friendship = current_user.user_friendships.where(friend_id: @friend.id).first.decorate
   end
 
@@ -104,5 +96,4 @@ before_filter :authenticate_user!
       current_user.requested_user_friendships
     end
   end
-end
 end

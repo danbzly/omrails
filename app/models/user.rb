@@ -8,12 +8,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :Biz_name
-
-                    validates :name, presence: true
-                    validates :Biz_name, presence: true, 
-                                         uniqueness: true
-                                         
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :biz_name
+                    validates :first_name, presence: true
+                    validates :last_name, presence: true
+                    validates :biz_name, presence: true, 
+                                         uniqueness: true,
+                                         format: {
+                                                  with: /^[a-zA-Z0-9_-]+$/,
+                                                  message: 'Must be formatted correctly.(Try no spaces)'
+                                                        }
                                       
 
 
@@ -34,11 +37,36 @@ class User < ActiveRecord::Base
                                       foreign_key: :user_id, 
                                       conditions: {state: 'pending'} 
 
-  has_many :pendingfriends, through: :pending_user_friendships, source: :friend                                                     
+  has_many :pending_friends, through: :pending_user_friendships, source: :friend    
 
+   has_many :requested_user_friendships, class_name: 'UserFriendship',
+                                      foreign_key: :user_id,
+                                      conditions: { state: 'requested' }
+  has_many :requested_friends, through: :requested_user_friendships, source: :friend
+  
+  has_many :blocked_user_friendships, class_name: 'UserFriendship',
+                                      foreign_key: :user_id,
+                                      conditions: { state: 'blocked' }
+  has_many :blocked_friends, through: :blocked_user_friendships, source: :friend
+  
+  has_many :accepted_user_friendships, class_name: 'UserFriendship',
+                                      foreign_key: :user_id,
+                                      conditions: { state: 'accepted' }
+  has_many :accepted_friends, through: :accepted_user_friendships, source: :friend                                                 
 
+  
 
+ def to_param
+  biz_name
+end
 
+ def full_name
+    first_name + " " + last_name
+  end
+
+   def first_biz_name
+    first_name + "(" + biz_name + ")"
+  end
 
   def gravatar_url
   stripped_email = email.strip

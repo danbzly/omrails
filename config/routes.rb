@@ -45,6 +45,7 @@ as :user do
 
 
   root :to => 'pins#index'
+  
    get '/:id', to: 'users#show', as: :user
 
   # The priority is based upon order of creation:

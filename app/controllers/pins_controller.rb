@@ -61,6 +61,7 @@ end
         format.json { render json: @pin.errors, status: :unprocessable_entity }
       end
     end
+   
   end
 
   # PUT /pins/1

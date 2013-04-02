@@ -15,7 +15,7 @@
            <%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
      </div>
     <div class="span7">
-      <strong><%= status.user.try(:name) %> (<%= status.user.try(:Biz_name) %>)</strong>
+      <strong><%= status.user.try(:first_name) %> (<%= status.user.try(:biz_name) %>)</strong>
       <p><%= status.content %></p>
     <div class="meta">
       <%= link_to time_ago_in_words(status.created_at) + " ago", status %> 

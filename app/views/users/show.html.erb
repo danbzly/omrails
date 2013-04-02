@@ -1,23 +1,24 @@
 
 
-<% if @statuses %>
-<% @statuses.find do |status| %>
 <div class="row">
 <div class="span12">
 <div class="page-header">
  <div class="well">
-	<h1><%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %><%= @user.Biz_name %> <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user), class: 'btn'%>
+  <% if current_user == @user %>
+	<h1><%= link_to image_tag(@user.gravatar_url), user_path %><%= @user.first_biz_name.capitalize %> 
 </h1>
-   <% if current_user == @user %>
+   
   <%= link_to "Edit Profile", edit_user_registration_path %><br>
   <a href="#myModal1" role="button" class="btn" data-toggle="modal">Add Pin</a>
+  <% else %>
+<h1><%= link_to image_tag(@user.gravatar_url), user_path %><%= @user.first_biz_name.capitalize %> <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user), class: 'btn'%>
+</h1>
   <% end %>
 
 </div>
  
 
-  <% end %>
-<% end %></div></div></div>
+ </div></div></div>
 
 
 <div class="container-fluid">
@@ -45,20 +46,29 @@
 
       
 <% end %><% end %> 
-<% if @statuses %>
-<% @statuses.find do |status| %>
 
-<h3>Add Friends Here</h3><br>
-<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
-<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
-<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
-<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
-<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
-<%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
+
+<% if current_user == @user %>
+<h3>I got me some friends</h3>
+<% @user_friendships.each do |friendship| %>
+  <% friend = friendship.friend %>
+  <div id="<%= dom_id(friendship) %>" class="friend row">
+    <div class="span1 offset1">
+
+      <%= link_to image_tag(friend.gravatar_url), user_path(friend.biz_name) %>  
+    </div>
+    <span class="admin">
+       <strong> <%= link_to friend.biz_name, user_path(friend.biz_name) %></strong> | <%= link_to 'edit',edit_user_friendship_path(friendship.friend.biz_name) %>
+    </span>
+     </div> 
+<% end %>
+<% end %>
+    
+  </div>
 
 
    
-  </div><% end %>
+
  
     <div class="span8">
       <h3>Statuses</h3>
@@ -72,7 +82,7 @@
     </div>
     <% end %>
   <% end %>
-<% end %>
+
       <!--Body content-->
     </div>
   </div>
