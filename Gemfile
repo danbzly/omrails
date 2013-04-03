@@ -10,7 +10,7 @@ gem 'aws-sdk'
 gem 'twitter-bootstrap-rails', '~> 2.0rc0'
 gem 'state_machine'
 gem 'draper'
-gem 'unicorn'
+
 
 group :test do
  gem 'shoulda'	
