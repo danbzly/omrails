@@ -10,7 +10,7 @@
       	   <h3>Statuses</h3>
  <% if @statuses %>
 <% @statuses.each do |status| %>
-    <div class="">
+    <div class="span 6">
       <%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
       <%= status.content %>
       <br>
