@@ -87,3 +87,11 @@
     </div>
   </div>
 </div>
+<% if @pins %>
+<h1><%= @user.biz_name %></h1>
+
+<div id="pins">
+  <%= render @pins %>
+</div>
+
+<% end %>

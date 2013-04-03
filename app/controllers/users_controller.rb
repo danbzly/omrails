@@ -3,6 +3,7 @@ class UsersController < ApplicationController
  def show
   @user_friendships = current_user.user_friendships.all
     @user = User.find_by_biz_name(params[:id])
+     @pins = @user.pins(params[:id]).order("created_at desc")
     if @user
       @statuses = @user.statuses.order("created_at desc")
       render action: :show
@@ -12,6 +13,7 @@ class UsersController < ApplicationController
     end
   end
 end
+
 
 def create
     @status = current_user.statuses.new(params[:status])
