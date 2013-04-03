@@ -66,7 +66,15 @@ Omrails::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.action_mailer.default_url_options = { :host => '127.0.0.1' }
 
-  
+  ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+:address => "localhost", # instead of "smtp.yourdomain.com",
+:port => 25,
+:domain => "http://limitless-coast-4809.herokuapp.com",
+:authentication => :login,
+:user_name => "user_name",
+:password => "password"
+}
   
 
   # paperclip shold use Amozon s3 on Heroku
