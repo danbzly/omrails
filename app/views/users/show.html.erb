@@ -1,70 +1,108 @@
 
-
-<div class="row">
-<div class="span12">
-<div class="page-header">
- <div class="well">
-  <% if current_user == @user %>
-	<h1><%= link_to image_tag(@user.gravatar_url), user_path %><%= @user.first_biz_name.capitalize %> 
-</h1>
-   
-  <%= link_to "Edit Profile", edit_user_registration_path %><br>
-  <a href="#myModal1" role="button" class="btn" data-toggle="modal">Add Pin</a>
-  <% else %>
-<h1><%= link_to image_tag(@user.gravatar_url), user_path %><%= @user.first_biz_name.capitalize %> <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user), class: 'btn'%>
-</h1>
-  <% end %>
-
-</div>
- 
-
- </div></div></div>
-
-
 <div class="container-fluid">
+  <div class="row">
+    <div class="span5">
+      <div class="well">
+     <div class="page-header">
+       
+          <% if current_user == @user %>
+        	<h1><%= link_to image_tag(@user.gravatar_url)+ ' ', user_path %><%= @user.biz_name %></h1>
+                
+                <%= @user.full_name %> <br />
+                <%= link_to "Edit Profile", edit_user_registration_path %>
+          
+             <div class="dropdown">
+
+              <h1>
+              <a class="dropdown-toggle btn-small btn btn-info" data-toggle="dropdown" href="#">Post A Status</a>
+              <a href="#myModal1" role="button" class="btn btn-small btn-info" data-toggle="modal">Pin +</a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+               <%= render 'statuses/toggle_form' %></h1>
+              </ul>
+              
+            </div>
+          <% else %>
+          <h1><%= link_to image_tag(@user.gravatar_url)+' ', user_path %><%= @user.biz_name %> <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user), class: 'btn'%>
+          </h1>
+          <% end %>
+
+     </div>
+
+    </div>
+
+   </div>
+       
+        <div class="span6">
+        
+          <% if @statuses %>
+             <% @statuses.each do |status| %>
+                <div class="status">
+                  <%= link_to image_tag(status.user.gravatar_url, :size => 15), user_path(status.user) %>
+                  <%= status.content %>
+                  <br>
+                  <%= link_to time_ago_in_words(status.created_at), status_path(status) %> ago
+                  <span class="admin">
+              <% if current_user == status.user %>
+            | <%= link_to 'Edit', edit_status_path(status) %> |
+              <%= link_to 'Delete', status, method: :delete, data: { confirm: 'Are you sure?' } %>
+               </span>
+                <% end %>
+          </div>
+         
+
+          <% end %>
+        <% end %>
+
+      </div>
+
+ </div>
+</div>
+
+
+
+<!--<div class="container-fluid">
   <div class="row-fluid">
     <div class="span4">
       
-      <!--Sidebar content-->
+     
       <% if current_user == @user %>
       <h3>Post your Comment</h3>
       <% @status = Status.new if @status.nil? %>
 
-<%= simple_form_for(@status, html: {class: ""}) do |f| %>
-  <%= f.error_notification %>
+      <%= simple_form_for(@status, html: {class: ""}) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="">
+    <div class="">
     
-    <%= f.text_area :content,  placeholder: "Hows business today?", label: "Stati Box", :cols => "200", :rows => "4" %>
+      <%= f.text_area :content,  placeholder: "Hows business today?", label: "Stati Box", :cols => "200", :rows => "4" %>
+    </div>
 
-  </div>
-
-  <div class="">
-    <%= f.button :submit, class: "btn-small btn-primary" %>
-  </div>
-
-
+    <div class="">
+      <%= f.button :submit, class: "btn-small btn-primary" %>
+    </div>
       
-<% end %><% end %> 
+  <% end %>
+<% end %> 
 
 
-<% if current_user == @user %>
-<h3>I got me some friends</h3>
-<% @user_friendships.each do |friendship| %>
+  <% if current_user == @user %>
+  <h3>I got me some friends</h3>
+  <% @user_friendships.each do |friendship| %>
   <% friend = friendship.friend %>
   <div id="<%= dom_id(friendship) %>" class="friend row">
     <div class="span1 offset1">
 
-      <%= link_to image_tag(friend.gravatar_url), user_path(friend.biz_name) %>  
-    </div>
-    <span class="admin">
-       <strong> <%= link_to friend.biz_name, user_path(friend.biz_name) %></strong> | <%= link_to 'edit',edit_user_friendship_path(friendship.friend.biz_name) %>
-    </span>
+          <%= link_to image_tag(friend.gravatar_url), user_path(friend.biz_name) %>  
+        </div>
+
+        <span class="admin">
+           <strong> <%= link_to friend.biz_name, user_path(friend.biz_name) %></strong> | <%= link_to 'edit',edit_user_friendship_path(friendship.friend.biz_name) %>
+        </span>
      </div> 
+ <% end %>
 <% end %>
-<% end %>
-    
-  </div>
+</div>
 
 
    
@@ -72,8 +110,8 @@
  
     <div class="span8">
       <h3>Statuses</h3>
- <% if @statuses %>
-<% @statuses.each do |status| %>
+       <% if @statuses %>
+       <% @statuses.each do |status| %>
     <div class="well">
       <%= link_to image_tag(status.user.gravatar_url), user_path(status.user) %>
       <%= status.content %>
@@ -83,15 +121,19 @@
     <% end %>
   <% end %>
 
-      <!--Body content-->
+      
     </div>
   </div>
-</div>
+</div>-->
+<div class="span12">
+  <div class="row">
 <% if @pins %>
 <h1><%= @user.biz_name %></h1>
 
 <div id="pins">
   <%= render @pins %>
 </div>
-
+</div>
+</div>
 <% end %>
+

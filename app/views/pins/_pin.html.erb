@@ -5,7 +5,7 @@
    </p>
    <p>
    	<strong>
-   		Posted by: <%= pin.user.try(:first_name)%> (<%= pin.user.try(:biz_name) %>)
+   		Posted by: <%= pin.user.try(:first_name) %> <%=link_to pin.user.try(:biz_name), pin.user %>
    	</strong>	
    </p>
 	
@@ -16,3 +16,4 @@
 	</p>	
 	<% end %>
 </div>	
+

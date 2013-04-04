@@ -1,0 +1,11 @@
+<% @status = Status.new if @status.nil? %>
+
+<%= simple_form_for(@status, html: {class: ""}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="status-toggle">
+    <%= f.text_area :content,  placeholder: "Hows business today?", label: "Stati Box", :cols => "200", :rows => "4" %>
+  
+    <%= f.button :submit, class: "btn btn-inverse" %>
+  </div>
+<% end %>
