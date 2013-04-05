@@ -68,7 +68,7 @@ Omrails::Application.configure do
 
   
 
-ActionMailer::Base.server_settings = {
+ActionMailer::Base.UserNotifier = {
   :address  => "localhost",
   :port  => 25,
   }
