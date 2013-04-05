@@ -68,11 +68,15 @@ Omrails::Application.configure do
 
   
 
-ActionMailer::Base.UserNotifier = {
-  :address  => "localhost",
-  :port  => 25,
-  }
-  
+ActionMailer::Base.smtp_settings = {
+  :address => "danbzly@gmail.com",
+  :port => 25,
+  :domain => "www.limitless-coast-4809.herokuapp.com",
+  :authentication => :login,
+  :user_name => "danbzly@gmail.com",
+  :password => "okokok99"
+}
+
 
   # paperclip shold use Amozon s3 on Heroku
   config.paperclip_defaults = {
