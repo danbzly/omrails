@@ -64,17 +64,14 @@ Omrails::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-  config.action_mailer.default_url_options = { :host => '127.0.0.1' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-  ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = {
-:address => "localhost", # instead of "smtp.yourdomain.com",
-:port => 25,
-:domain => "http://limitless-coast-4809.herokuapp.com",
-:authentication => :login,
-:user_name => "user_name",
-:password => "password"
-}
+  
+
+ActionMailer::Base.server_settings = {
+  :address  => "localhost",
+  :port  => 25,
+  }
   
 
   # paperclip shold use Amozon s3 on Heroku
