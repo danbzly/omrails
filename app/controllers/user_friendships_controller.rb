@@ -44,7 +44,7 @@ class UserFriendshipsController < ApplicationController
       if params[:user_friendship] && params[:user_friendship].has_key?(:friend_id)
       @friend = User.where(biz_name: params[:user_friendship][:friend_id]).first
       @user_friendship = UserFriendship.request(current_user, @friend)
-      flash[:success] = "You are now friends with #{@friend.try(:first_name)}"
+      
       respond_to do |format|
         if @user_friendship.new_record?
           format.html do 
