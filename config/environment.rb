@@ -4,11 +4,12 @@ require File.expand_path('../application', __FILE__)
 # Initialize the rails application
 Omrails::Application.initialize!
 
-ActionMailer::Base.smtp_settings = {
-  :address => "localhost:3000",
-  :port => 25,
-  :domain => "http://limitless-coast-4809.herokuapp.com",
-  :authentication => :login,
-  :user_name => "danbzly@gmail.com",
-  :password => "okokok99"
-}
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => 'baci.lindsaar.net',
+  :user_name            => '<username>',
+  :password             => '<password>',
+  :authentication       => 'plain',
+  :enable_starttls_auto => true  }
