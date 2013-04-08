@@ -65,7 +65,15 @@ Omrails::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
- 
+ config.action_mailer.default_url_options = { :host => 'smtp.sendgrid.net' }
+ActionMailer::Base.smtp_settings = {
+  :address        => "smtp.sendgrid.net",
+  :port           => "25",
+  :authentication => :login,
+  :user_name      => ENV['app13048826@heroku.com'],
+  :password       => ENV['cutpgevm'],
+  :domain         => ENV['heroku.com']
+}
 
   # paperclip shold use Amozon s3 on Heroku
    config.paperclip_defaults = {
