@@ -67,7 +67,7 @@ Omrails::Application.configure do
   
   ActionMailer::Base.smtp_settings = {
 :address => ‘smtp.sendgrid.net’,
-:port => ’587′,
+:port => ’25′,
 :authentication => :plain,
 :user_name => ENV['app13048826@heroku.com'],
 :password => ENV['cutpgevm'],
