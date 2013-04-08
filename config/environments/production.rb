@@ -69,10 +69,10 @@ Omrails::Application.configure do
 ActionMailer::Base.smtp_settings = {
   :address        => "smtp.sendgrid.net",
   :port           => "25",
-  :authentication => :login,
-  :user_name      => ENV['app13048826@heroku.com'],
-  :password       => ENV['cutpgevm'],
-  :domain         => ENV['heroku.com']
+  :authentication => :plain,
+  :user_name      => ENV['SENDGRID_USERNAME'],
+  :password       => ENV['SENDGRID_PASSWORD'],
+  :domain         => ENV['SENDGRID_DOMAIN']
 }
 
   # paperclip shold use Amozon s3 on Heroku
