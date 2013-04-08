@@ -69,10 +69,10 @@ Omrails::Application.configure do
 ActionMailer::Base.smtp_settings = {
   :address        => "smtp.sendgrid.net",
   :port           => "25",
-  :authentication => :plain,
+  :authentication => :login,
   :user_name      => ENV['app13048826@heroku.com'],
   :password       => ENV['cutpgevm'],
-  :domain         => ENV['http://limitless-coast-4809.herokuapp.com']
+  :domain         => ENV['heroku.com']
 }
 
 
