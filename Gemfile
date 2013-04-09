@@ -10,6 +10,9 @@ gem 'aws-sdk'
 gem 'twitter-bootstrap-rails', '~> 2.0rc0'
 gem 'state_machine'
 gem 'draper'
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
+gem 'faker', '1.1.2'
 
 
 group :test do
